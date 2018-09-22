@@ -1,0 +1,2 @@
+The fasttext word embedding model is too large to be hosted in the github repo (it cause some http post buffer issues)
+Anyway, the resource can be found from https://github.com/facebookresearch/fastText/blob/master/pretrained-vectors.md
