@@ -1,0 +1,41 @@
+digraph g{
+  rankdir=LR;
+  node [shape=record fontname=Arial];
+  "Text preprocessing" -> "Feature enrichment" -> "Feature representation" -> "Classification modeling"
+}
+
+digraph g{
+  rankdir=LR;
+  graph [fontsize=10 fontname="Verdana" compound=true];
+  node [shape=record fontname=Arial];
+  subgraph cluster_3 {
+    label="Vocabulary alignment";
+    "Mispelling correction";
+  }
+
+  subgraph cluster_0 {
+    label="Cleansing/normalization";
+    "Stop words" -> "Stemming";
+  }
+  subgraph cluster_1 {
+  label="Annotation/Tagging";
+  "Name Entity Recognition (NER)";
+  "POS-tagging"
+  "Dependency parsing"
+  }
+  "Mispelling correction" -> "Name Entity Recognition (NER)" [lhead=cluster_1];
+  "Name Entity Recognition (NER)" -> "Stop words" [ltail=cluster_1 lhead=cluster_0];
+}
+
+digraph G {
+  "Drug Product"[shape=circle];
+   "Drug Product" -> "Drug Product" [label="interacts with"]
+  "Drug Product" -> "Drug Product Class" [label="is part of"]
+  "Drug Product" -> "disease" [label=treats]
+  "Drug Product" -> "body part" [label=targets]
+  "Drug Product" -> "quantity" [label="quantity posology"]
+  "Drug Product" -> "duration" [label="duration posology"]
+  "Drug Product" -> "symptom" [label="may cause (side effect)"]
+  "Drug Product" -> "active ingredient" [label="is composed of"]
+}
+
