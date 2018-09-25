@@ -1,0 +1,18 @@
+digraph G {
+mispelled_fixed_clean_input_train[shape=folder fillcolor=lightblue style=filled];
+labels[shape=folder fillcolor=lightblue style=filled];
+
+texts_to_sequences[shape=parallelogram fillcolor=yellow style=filled];
+
+subgraph cluster_0 {
+label="Neural Network";
+embedding_layer[shape=parallelogram fillcolor=yellow style=filled];
+LSTM_layer[shape=parallelogram fillcolor=yellow style=filled];
+dense_layer[shape=parallelogram fillcolor=yellow style=filled];
+}
+
+
+embedding_layer->LSTM_layer->dense_layer;
+mispelled_fixed_clean_input_train->texts_to_sequences;
+texts_to_sequences->embedding_layer[ltail=cluster_0];
+labels->embedding_layer[ltail=cluster_0];
