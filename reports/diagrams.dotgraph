@@ -10,12 +10,12 @@ digraph g{
   node [shape=record fontname=Arial];
   subgraph cluster_3 {
     label="Vocabulary alignment";
-    "Mispelling correction";
+    "Misspelling correction";
   }
 
   subgraph cluster_0 {
-    label="Cleansing/normalization";
-    "Stop words" -> "Stemming";
+    label="Simplification";
+    "Stop words" -> "Stemming or Lemmatization";
   }
   subgraph cluster_1 {
   label="Annotation/Tagging";
@@ -23,7 +23,7 @@ digraph g{
   "POS-tagging"
   "Dependency parsing"
   }
-  "Mispelling correction" -> "Name Entity Recognition (NER)" [lhead=cluster_1];
+  "Misspelling correction" -> "Name Entity Recognition (NER)" [lhead=cluster_1];
   "Name Entity Recognition (NER)" -> "Stop words" [ltail=cluster_1 lhead=cluster_0];
 }
 
