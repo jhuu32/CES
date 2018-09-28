@@ -4,17 +4,38 @@ digraph g{
   "Text preprocessing" -> "Feature enrichment" -> "Feature representation" -> "Classification modeling"
 }
 
+
+digraph g{
+  rankdir=LR;
+  node [shape=record fontname=Arial];
+  "Text preprocessing";
+
+  subgraph cluster_classic {
+   label="Classical Technique";
+   "Feature enrichment (1)"->"Feature representation (1)"->"Classification modeling (1)";
+  }
+
+  subgraph cluster_nn {
+   label="Deep Learning / Neural Network";
+   "Feature representation (2)"->"Classification modeling (2)";
+  }
+
+"Text preprocessing"-> "Feature enrichment (1)";
+"Text preprocessing"-> "Feature representation (2)";
+
+}
+
+
+
 digraph g{
   rankdir=LR;
   graph [fontsize=10 fontname="Verdana" compound=true];
   node [shape=record fontname=Arial];
-  subgraph cluster_3 {
-    label="Vocabulary alignment";
-    "Misspelling correction";
-  }
-
+  
+  "Tokenization"->"Spelling correction";
+	
   subgraph cluster_0 {
-    label="Simplification";
+    label="Cleansing/Normalization";
     "Stop words" -> "Stemming or Lemmatization";
   }
   subgraph cluster_1 {
@@ -23,7 +44,7 @@ digraph g{
   "POS-tagging"
   "Dependency parsing"
   }
-  "Misspelling correction" -> "Name Entity Recognition (NER)" [lhead=cluster_1];
+  "Spelling correction" -> "Name Entity Recognition (NER)" [lhead=cluster_1];
   "Name Entity Recognition (NER)" -> "Stop words" [ltail=cluster_1 lhead=cluster_0];
 }
 
