@@ -1,7 +1,7 @@
-# Text Classification With Deep Learning and Traditional Technique
+# Comparative Study to Solve Text Categorization
 # CES Data Scientist 2017-2018
 
-This github project hosts a rookie's experiment to resolve basically a complex text classification problem by comparing 2 approaches:
+This github project hosts a rookie's experiment to resolve naively a complex text classification problem by comparing 2 approaches:
 * Deep Learning (**D**L)technique which has regained tremendous attraction from the Machine Learning community to address NLP problem
 * Traditional Technique which is basically based on non-DL principle
 
