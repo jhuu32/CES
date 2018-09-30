@@ -60,3 +60,37 @@ digraph G {
   "Drug Product" -> "active ingredient" [label="is composed of"]
 }
 
+digraph G {
+node [shape=record fontname=Arial];
+"Training Input"[shape=folder fillcolor=lightblue style=filled];
+"ANSM Repository"[shape=folder fillcolor=lightblue style=filled];
+"FastText model"[shape=folder fillcolor=lightblue style=filled];
+
+"Entity Domain Extraction"[fillcolor=yellow style=filled];
+"Text Cleansing (stopWords, custom cleanup,...)"[fillcolor=yellow style=filled];
+"Spelling Correction"[fillcolor=yellow style=filled];
+"Count and Distance based Statistics Enrichment"[fillcolor=yellow style=filled];
+"Stemming"[fillcolor=yellow style=filled];
+"Custom Word Embedding"[fillcolor=yellow style=filled];
+"General Word Embedding"[fillcolor=yellow style=filled];
+"DNN"[fillcolor=yellow style=filled];
+"Bidirectional RNN/LSTM"[fillcolor=yellow style=filled];
+"Comparison"[fillcolor=yellow style=filled];
+"CNN"[fillcolor=yellow style=filled];
+"TF-IDF"[fillcolor=yellow style=filled];
+"PCA"[fillcolor=yellow style=filled];
+"XGBoost"[fillcolor=yellow style=filled];
+
+
+"ANSM Repository"->"Entity Domain Extraction";
+"FastText model"->"General Word Embedding";
+"Entity Domain Extraction"->"Spelling Correction";
+"Entity Domain Extraction"->"General Word Embedding"[label="OOV handling"];
+"Training Input"->"Text Cleansing (stopWords, custom cleanup,...)";
+"Text Cleansing (stopWords, custom cleanup,...)"->"Spelling Correction";
+"Spelling Correction"->"Stemming"->"TF-IDF"->"PCA"->"Count and Distance based Statistics Enrichment"->"XGBoost"->"Comparison";
+"Spelling Correction"->"Custom Word Embedding"->"DNN"->"Comparison";
+"Spelling Correction"->"General Word Embedding"->"CNN"->"Comparison";
+"General Word Embedding"->"Bidirectional RNN/LSTM"->"Comparison";
+}
+
