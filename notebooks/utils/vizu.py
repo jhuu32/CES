@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import itertools
 
 def plot_keras_model_learning_curve(history):
