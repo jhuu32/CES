@@ -1,0 +1,36 @@
+digraph G {
+mispelled_fixed_clean_input_train[shape=folder fillcolor=lightblue style=filled];
+labels[shape=folder fillcolor=lightblue style=filled];
+"wiki.fr.vec(fasttext)"[shape=folder fillcolor=lightblue style=filled];
+fasttext_embedding_extension[shape=folder fillcolor=lightblue style=filled];
+drug_names[shape=folder fillcolor=lightblue style=filled];
+ingredient_names[shape=folder fillcolor=lightblue style=filled];
+fasttext_embedding_extension[shape=folder fillcolor=lightblue style=filled];
+
+texts_to_sequences[shape=parallelogram fillcolor=yellow style=filled];
+fasttext_embedding_extension_builder[shape=parallelogram fillcolor=yellow style=filled];
+concat[shape=parallelogram fillcolor=yellow style=filled];
+
+subgraph cluster_0 {
+label="Neural Network";
+embedding_layer[shape=parallelogram fillcolor=yellow style=filled];
+LSTM_layer[shape=parallelogram fillcolor=yellow style=filled];
+dropout_layer[shape=parallelogram fillcolor=yellow style=filled];
+dense_layer[shape=parallelogram fillcolor=yellow style=filled];
+}
+
+
+"wiki.fr.vec(fasttext)"->fasttext_embedding_extension_builder;
+drug_names->fasttext_embedding_extension_builder;
+ingredient_names->fasttext_embedding_extension_builder;
+fasttext_embedding_extension_builder->fasttext_embedding_extension;
+
+"wiki.fr.vec(fasttext)"->concat;
+fasttext_embedding_extension->concat;
+
+
+embedding_layer->LSTM_layer->dropout_layer->dense_layer;
+mispelled_fixed_clean_input_train->texts_to_sequences;
+texts_to_sequences->embedding_layer[ltail=cluster_0];
+concat->embedding_layer;
+labels->embedding_layer[ltail=cluster_0];

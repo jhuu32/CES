@@ -1,0 +1,28 @@
+digraph G {
+mispelled_fixed_stemmed_clean_input_train[shape=folder fillcolor=lightblue style=filled];
+text_extracted_features[shape=folder fillcolor=lightblue style=filled];
+
+text_feature_extractor[shape=parallelogram fillcolor=yellow style=filled];
+join[shape=parallelogram fillcolor=yellow style=filled];
+splitter[shape=parallelogram fillcolor=yellow style=filled];
+TFIDFVectorizer[shape=parallelogram fillcolor=yellow style=filled];
+PCAReducer[shape=parallelogram fillcolor=yellow style=filled];
+"XGBoost (final fit on whole training)"[shape=parallelogram fillcolor=yellow style=filled];
+"XGBoost((hyper-parameter search with cross-validation)"[shape=parallelogram fillcolor=yellow style=filled];
+"Metric evaluator"[shape=parallelogram fillcolor=yellow style=filled];
+
+mispelled_fixed_stemmed_clean_input_train->text_feature_extractor->text_extracted_features;
+mispelled_fixed_stemmed_clean_input_train->TFIDFVectorizer->PCAReducer;
+
+text_extracted_features->join;
+
+join->splitter;
+
+PCAReducer->join;
+splitter->"XGBoost((hyper-parameter search with cross-validation)" [label=train];
+"XGBoost((hyper-parameter search with cross-validation)"->"XGBoost (final fit on whole training)";
+
+"XGBoost (final fit on whole training)"->"Metric evaluator"[label=test];
+splitter->"Metric evaluator"[label=test];
+
+}
