@@ -1,4 +1,3 @@
-
 import csv
 
 def saveEmbeddingVector(vectors, fileName):
@@ -18,3 +17,21 @@ def loadEmbeddingVector(fileName):
         csv_file.close()
         return myDict 
     return None
+    
+def loadFixMap(fileName):
+    '''load the map word>fixed word '''
+    reader = csv.reader(open(fileName, 'r'))
+    fixMap = {}
+    for row in reader:
+       k, v = row
+       fixMap[k] = v
+    return fixMap    
+    
+def loadWords(fileName):
+    '''load set of words '''
+    reader = csv.reader(open(fileName, 'r'))
+    words = set()
+    for row in reader:
+       if len(row) > 0:
+           words.add(row[0])
+    return words        
