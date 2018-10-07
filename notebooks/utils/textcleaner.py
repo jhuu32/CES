@@ -9,8 +9,18 @@ stemmer = SnowballStemmer('french')
 punctationRegEx = re.compile('(\.|\!|\?|:|;|,|\")')
 numberRegEx = re.compile("([0-9]+)")
 
-
-def cleanText(text, cleanStopWords, useStemming=False, removePunctuation=True):
+def stemWords(words, excludeStemmedWords = None):
+    stemmedWords = []
+    for word in words:
+        if not excludeStemmedWords is None and word in excludeStemmedWords:
+            stemmedWord = word
+        else:
+            stemmedWord = stemmer.stem(word)
+            
+        stemmedWords.append(stemmedWord)
+    return stemmedWords
+        
+def cleanText(text, cleanStopWords, useStemming=False, removePunctuation=True, excludeStemmedWords = None):
     '''clean the text with stopWords, stemming and custom reg expressions techniques '''
     # lower case
     text = text.lower()
@@ -51,8 +61,8 @@ def cleanText(text, cleanStopWords, useStemming=False, removePunctuation=True):
         text = " ".join(text)    
     
     if useStemming:
-        text = text.split()        
-        stemmedWords = [stemmer.stem(word) for word in text]
+        words = text.split()  
+        stemmedWords = stemWords(words, excludeStemmedWords)
         text = " ".join(stemmedWords)
 
     # compact successive space character
